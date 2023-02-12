@@ -1,42 +1,71 @@
-// Get the canvas node and the drawing context
-const canvas = document.getElementById('canv');
-const ctx = canvas.getContext('2d');
+const textArea = document.querySelector('.text-area');
+const mensaje = document.querySelector('.mensaje');
+const copia = document.querySelector('.copiar');
 
-// set the width and height of the canvas
-const w = canvas.width = document.body.offsetWidth;
-const h = canvas.height = document.body.offsetHeight;
+function validarTexto() {
+  let textoEscrito = document.querySelector(".text-area").value;
+  let validador = textoEscrito.match(/^[a-z]*$/);
 
-// draw a black rectangle of width and height same as that of the canvas
-ctx.fillStyle = '#000';
-ctx.fillRect(0, 0, w, h);
+  if (!validador || validador === 0) {
+    alert("Solo se permiten letras minúsculas y sin acentos");
+    location.reload();
+    return true;
+  } 
 
-const cols = Math.floor(w / 20) + 1;
-const ypos = Array(cols).fill(0);
-function matrix () {
-    // Draw a semitransparent black rectangle on top of previous drawing
-    ctx.fillStyle = '#0001';
-    ctx.fillRect(0, 0, w, h);
+}
+
+function btnEncriptar(){
+  if(!validarTexto()) {
+      const textoEncriptado = encriptar(textArea.value)
+      mensaje.value = textoEncriptado
+      mensaje.style.backgroundImage = "none"
+      textArea.value = "";
   
-    // Set color to green and font to 15pt monospace in the drawing context
-    ctx.fillStyle = '#0f0';
-    ctx.font = '15pt monospace';
-  
-    // for each column put a random character at the end
-    ypos.forEach((y, ind) => {
-      // generate a random character
-      const text = String.fromCharCode(Math.random() * 128);
-  
-      // x coordinate of the column, y coordinate is already given
-      const x = ind * 20;
-      // render the character at (x, y)
-      ctx.fillText(text, x, y);
-  
-      // randomly reset the end of the column if it's at least 100px high
-      if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-      // otherwise just move the y coordinate for the column 20px down,
-      else ypos[ind] = y + 20;
-    });
   }
+}
+function encriptar(stringEncriptada){
+  let matrizCodigo = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
+  stringEncriptada = stringEncriptada.toLowerCase()
+
+  for(let i = 0; i < matrizCodigo.length; i++){
+      if(stringEncriptada.includes(matrizCodigo[i][0])){
+          stringEncriptada = stringEncriptada.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1])
+
+      }
+
+  }
+  return stringEncriptada
+}
+
+
+
+function btnDesencriptar(){
+  const textoEncriptado = desencriptar(textArea.value)
+  mensaje.value = textoEncriptado
+  mensaje.style.backgroundImage = "none"
+  textArea.value = "";
   
-  // render the animation at 20 FPS.
-  setInterval(matrix, 50);
+}
+
+
+function desencriptar(stringDesencriptada){
+  let matrizCodigo = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
+  stringDesencriptada = stringDesencriptada.toLowerCase()
+
+  for(let i = 0; i < matrizCodigo.length; i++){
+      if(stringDesencriptada.includes(matrizCodigo[i][1])){
+          stringDesencriptada = stringDesencriptada.replaceAll(matrizCodigo[i][1] , matrizCodigo[i][0])
+
+      }
+
+  }
+  return stringDesencriptada
+}
+
+
+function copiar(){
+  mensaje.select();
+  navigator.clipboard.writeText(mensaje.value)
+  mensaje.value = "";
+  alert("Texto Copiado")
+}

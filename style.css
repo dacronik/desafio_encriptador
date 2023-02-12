@@ -1,3 +1,7 @@
+* {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
 body {
     background-image: url(/img/Encriptar.jpg);
     background-repeat: no-repeat;
@@ -64,6 +68,7 @@ main {
     background-image: url(/img/muneco.png);
     background-repeat: no-repeat;
     background-size: cover;
+    font-size: 24px;
     text-align: center;
     border: 2px #0A3871;
     width: 540px;
