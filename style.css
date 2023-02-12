@@ -1,0 +1,111 @@
+body {
+    background-image: url(/img/Encriptar.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header {
+    margin-top: 25px;
+    margin-left: 20px;
+}
+main {
+    display: inline-flex;
+    width: 940px;
+    margin-top: 50px;
+}
+.text-area {
+    background:transparent;
+    border:none;
+    color: #fff;
+    width: 540px;
+    height: 640px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+::placeholder { color: #fff;}
+  .text-area:focus{
+    outline: none;
+  }
+.btn-encriptar {
+    background-color:transparent;
+    border: 5px solid #0A3871;
+    border-radius: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    height: 67px;
+    width: 228px;
+    font-size: 24px;
+}
+.btn-encriptar:hover {
+    background-color: #0A3871;
+    color: #ffffff;
+}
+.btn-desencriptar {
+    background: transparent;
+    border: 5px solid #4D4DFF;
+    border-radius: 24px;
+    color: #fff;
+    cursor: pointer;
+    height: 67px;
+    margin-left: 30px;
+    width: 228px;
+    font-size: 24px;
+    transition: 0.2s;
+}
+.btn-desencriptar:hover {
+    background-color: #4D4DFF;
+    color: #ffffff;
+    box-shadow: 0 0 10px #4D4DFF, 0 0 40px #4D4DFF,
+                0 0 80px #4D4DFF;
+}
+.mensaje {
+    background:transparent;
+    color: #fff;
+    background-image: url(/img/muneco.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    border: 2px #0A3871;
+    width: 540px;
+    height: 640px;
+}
+.button-copiar {
+    text-align: center;
+}
+.copiar {
+    background: transparent;
+    border: 5px solid #C724B1;
+    width: 228px;
+    height: 67px;
+    border-radius: 24px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.2s;
+}
+
+.copiar:hover {
+    background-color: #C724B1;
+    color: #ffffff;
+    box-shadow: 0 0 10px #C724B1, 0 0 40px #0A3871,
+                0 0 80px #C724B1;
+}
+
+@media screen and (max-width:480px){
+    main {
+        display: grid;
+        max-width: 480px;
+    }
+    .text-area, .mensaje {
+        width: 100%;
+    }
+    .buttons{
+        display: inline-block;
+        text-align: center;
+    }
+    .btn-encriptar{
+        margin-bottom: 15px;
+        margin-left: 22px;
+    }
+}
